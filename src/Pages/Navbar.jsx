@@ -39,7 +39,7 @@ const Navbar = () => {
                     {(localStorage.getItem('token') === null || localStorage.getItem('token') === 'null' || localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === undefined)
                         ? <form className='d-flex topnav-right' >
 
-                            <Link className='btn mx-2 btn-primary' to='/login'>Login</Link>
+                            <Link className='btn mx-2 btn-primary' to='/signin'>Login</Link>
                             <Link className='btn mx-2 btn-primary' to='/signUp'>Sign Up</Link>
                         </form>
                         : <form className='d-flex topnav-right' >
