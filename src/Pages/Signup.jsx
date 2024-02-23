@@ -18,11 +18,12 @@ const Signup = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault(); //synthetic event
-    const name = passwordDetails.name;
+    const username = passwordDetails.name;
     const email = passwordDetails.email;
     const password = passwordDetails.password;
     const location = passwordDetails.location;
     const confirm_password = passwordDetails.confirm_password;
+    const address = passwordDetails.address
     if (password === confirm_password) {
       const response = await fetch(`${host}api/createUser`, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -30,15 +31,15 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password, location }),
+        body: JSON.stringify({ username, email, password, location, address }),
       });
-      const json = await response.json();
-      console.log(json);
-      if (json.success === "true" || json.success === true) {
+      const data = await response.json();
+      console.log(data);
+      if (data.status===true) {
         //saving auth token in local storage and redirect
 
-        navigate("/login");
-        console.log(json);
+        navigate("/signin");
+        console.log(data);
       } else {
         navigate("/signup");
         alert("Enter valid credentials");

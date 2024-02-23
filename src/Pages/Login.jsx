@@ -16,7 +16,7 @@ const Login = () => {
     const password = loginDetails.password;
     console.log(loginDetails);
 
-    const response = await fetch(`${host}api/auth/loginUser`, {
+    const response = await fetch(`${host}api/loginUser`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
 
       headers: {
@@ -26,14 +26,14 @@ const Login = () => {
     });
     const json = await response.json();
     console.log(json);
-    if (json.success) {
+    if (json.status) {
       //saving auth token in local storage and redirect
       localStorage.setItem("token", json.authToken);
 
       localStorage.setItem("email", email);
 
       navigate("/");
-      alert("welcome to Daily-Foody");
+      alert("Welcome to muscular planet");
     } else {
       alert("invalid creds");
     }
@@ -70,7 +70,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="w-full bg-primary-700 text-center py-3 rounded btn-primary hover:bg-green-dark focus:outline-none my-1"
+                  className="w-full  text-center py-3 rounded btn-primary  focus:outline-none my-1"
                 >
                   Log In
                 </button>
