@@ -21,7 +21,7 @@ app.use((req,res,next)=>{
 
 
 app.use('/api', require('./routes/createUser'))
-
+app.use('/api/data', require('./routes/data'))
 
 app.get('/', function (req, res) {
     console.log("/user request called");

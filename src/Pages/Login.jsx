@@ -68,7 +68,7 @@ const Login = () => {
                 />
 
                 <button
-                  type="button"
+                  
                   onClick={handleSubmit}
                   className="w-full  text-center py-3 rounded btn-primary  focus:outline-none my-1"
                 >

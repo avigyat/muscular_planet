@@ -7,6 +7,7 @@ import './App.css';
 import  Navbar  from "./Pages/Navbar";
 import  Login  from "./Pages/Login";
 import  Signup  from "./Pages/Signup";
+import Supplement from "./Pages/Supplement";
 function App() {
   return (
     <div >
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/signin" element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/' element={<Supplement />} />
         </Routes>
       </Router>
     </div>

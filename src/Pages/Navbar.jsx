@@ -13,7 +13,7 @@ const Navbar = () => {
 
   const logout = () => {
 
-      localStorage.removeItem('token')
+      localStorage.removeItem('email')
       navigate('/signin')
   }
 
@@ -31,12 +31,12 @@ const Navbar = () => {
          <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-yellow-900">
                 <div className="container-fluid">
-                    <Link className={`navbar-brand ${location.pathname === "/" ? "active" : ""}`} to="/">Daily-Foody</Link>
+                    <Link className={`navbar-brand ${location.pathname === "/" ? "active" : ""}`} to="/">Muscular Planet</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    {(localStorage.getItem('token') === null || localStorage.getItem('token') === 'null' || localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === undefined)
+                    {(localStorage.getItem('email') === null || localStorage.getItem('email') === 'null' || localStorage.getItem('email') === 'undefined' || localStorage.getItem('token') === undefined)
                         ? <form className='d-flex topnav-right' >
 
                             <Link className='btn mx-2 btn-primary' to='/signin'>Login</Link>
