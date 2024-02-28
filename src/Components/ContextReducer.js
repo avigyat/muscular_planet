@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
 
+
 const cartStateContext = createContext()
 const cartDispatchContext = createContext();
 
@@ -7,7 +8,7 @@ const reducer = (state, action) => {
     switch (action.type) {
         case "ADD":
             return [...state, {
-                id: action.id, CategoryName: action.CategoryName, img: action.img,
+                id: action.id, CategoryName: action.CategoryName, img: action.img, img2:action.img2, flavour:action.flavour,
                 name: action.name, price: action.price, qty: action.qty, size: action.size, orderDate:new Date().toDateString()
             }]
             break;

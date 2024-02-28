@@ -1,43 +1,95 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatchCart,useCart } from './ContextReducer';
+
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatchCart,useCart } from './ContextReducer'
 
 const Itemcard = (props) => {
+  const navigate = useNavigate();
   let dispatch = useDispatchCart();
   let options = props.Options;
   let priceOptions = Object.keys(options);
   const priceRef = useRef();
+  let flavours = props.flavours
+  
 
   let items = props.items;
   const [qty, setqty] = useState(1);
   const [size, setsize] = useState("");
+  const [flavour, setflavour] = useState("unflavoured");
   let data = useCart();
-  let handleShop = async () => {
-    await dispatch({
-      type: "ADD",
-      id: props.items._id,
-      CategoryName: props.items.CategoryName,
-      img: props.items.img,
-      name: props.items.name,
-      price: finalPrice,
-      qty: qty,
-      size: size,
-    });
-    console.log(data);
-  };
-
+ 
+  
+  let handleview = ()=>{
+    console.log("viewed")
+    navigate('/details')
+  }
+  let handleShop = async()=>{
+    await dispatch({type:"ADD",id:props.items._id,CategoryName:props.items.CategoryName,img:props.items.img,
+    name:props.items.name,price:finalPrice,qty:qty,size:size,img2:props.items.img2,flavour:flavour})
+    console.log(data)
+  }
   let finalPrice = qty * parseInt(options[size]);
   useEffect(() => {
     setsize(priceRef.current.value);
   }, []);
   return (
     <div>
+       <section>
+          <div
+            id="carouselExampleFade"
+            className="carousel slide carousel-fade "
+            data-bs-ride="carousel"
+          >
+            <div className="carousel-inner " id="carousel">
+             
+              <div className="carousel-item active" >
+                <img
+                  src={items.img}
+                  className=" w-full  "
+                  style={{  height: "300px", objectFit: "fill" }}
+                  alt="..."
+                />
+              </div>
+              
+              <div className="carousel-item" >
+                <img
+                  src={items.img2}
+                  className=" w-full"
+                  style={{  height: "300px", objectFit: "fill" }}
+                  alt="..."
+                />
+              </div>
+           
+            </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+        </section>
       <div className="max-w-sm  rounded overflow-hidden shadow-lg bg-slate-800 text-white">
-        <img
-          className="w-full"
-          src={items.img}
-          style={{ height: "200px", objectFit: "fill" }}
-          alt="..."
-        />
+     
+       
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">{items.name}</div>
           <p className=" text-base">{items.description}</p>
@@ -67,6 +119,24 @@ const Itemcard = (props) => {
             );
           })}
         </select>
+        <select
+          className="m-2 h-100 rounded bg-success"
+          onChange={(e) => setflavour(e.target.value)}
+          
+        >
+          {flavours.map((data) => {
+            return (
+              <option key={data} value={data}>
+                {data}
+              </option>
+            );
+          })}
+        </select>
+        <button onClick={handleview}
+        className="m-2 h-100 rounded bg-success px-2"
+        >
+          View Details
+        </button>
         <div>₹{finalPrice}/-</div>
         <hr className="4px bg-white " />
         <div className="container flex flex-col my-2">

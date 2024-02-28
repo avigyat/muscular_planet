@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Components/Itemcard";
 
+
+
 const Supplement = () => {
+ 
   const [search, setsearch] = useState("");
   const [cat, setcat] = useState([]);
   const [items, setitems] = useState([]);
@@ -37,24 +40,10 @@ const Supplement = () => {
             data-bs-ride="carousel"
           >
             <div className="carousel-inner " id="carousel">
-              <div class=" carousel-caption  " style={{ zIndex: "9" }}>
-                <form className=" d-flex justify-content-center">
-                  {" "}
-                  {/* justify-content-center, copy this <form> from navbar for search box */}
-                  <input
-                    className="form-control me-2 w-75 bg-white text-dark"
-                    type="search"
-                    placeholder="Type in..."
-                    aria-label="Search"
-                  />
-                  <button className="btn text-white bg-success" type="submit">
-                    Search
-                  </button>
-                </form>
-              </div>
+             
               <div className="carousel-item active" style={{ height: "490px" }}>
                 <img
-                  src="https://source.unsplash.com/random/900x700/?burger"
+                  src="./images/first.jpg"
                   className="d-block w-100  "
                   style={{ filter: "brightness(30%)" }}
                   alt="..."
@@ -62,7 +51,7 @@ const Supplement = () => {
               </div>
               <div className="carousel-item" style={{ height: "490px" }}>
                 <img
-                  src="https://source.unsplash.com/random/900x700/?pastry"
+                  src="./images/second.jpg"
                   className="d-block w-100 "
                   style={{ filter: "brightness(30%)" }}
                   alt="..."
@@ -70,7 +59,7 @@ const Supplement = () => {
               </div>
               <div className="carousel-item" style={{ height: "490px" }}>
                 <img
-                  src="https://source.unsplash.com/random/900x700/?barbeque"
+                  src="./images/third.jpg"
                   className="d-block w-100 "
                   style={{ filter: "brightness(30%)" }}
                   alt="..."
@@ -153,6 +142,8 @@ const Supplement = () => {
                                 <Card
                                   items={filteredItems}
                                   Options={filteredItems.options[0]}
+                                    flavours ={filteredItems.flavours }
+                                  
                                 ></Card>
                               </div>
                             );

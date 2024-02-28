@@ -19,7 +19,6 @@ app.use((req,res,next)=>{
   next();
 })
 
-
 app.use('/api', require('./routes/createUser'))
 app.use('/api/data', require('./routes/data'))
 
