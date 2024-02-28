@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useCart } from '../Components/ContextReducer';
 
 const Navbar = () => {
   let location = useLocation();
   const navigate = useNavigate();
   
-  
+  let data = useCart();
 
   React.useEffect(() => {
       console.log(location.pathname);
@@ -18,9 +19,9 @@ const Navbar = () => {
   }
 
   const viewCart = (e) => {
-      e.preventDefault();
-      navigate('/signin')
-  }
+    e.preventDefault();
+    navigate('/viewCart')
+}
   const viewHistory = (e) => {
       e.preventDefault();
       navigate('/signin')
@@ -48,7 +49,7 @@ const Navbar = () => {
                             </button>
                             <button className='btn mx-2 btn-primary' onClick={viewCart}> Cart
                                 <span className="bg-green-100 text-green-800 text-xs font-small me-2 mx-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
-                                  {console.log(localStorage.getItem('token')) }     
+                                {data.length}    
                                 </span>
                             </button>
                             {/* {cartView ? <Modal onClose={()=>setCartView(false)}><Cart></Cart></Modal> : null} */}
