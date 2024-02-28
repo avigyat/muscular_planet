@@ -17,16 +17,21 @@ const Itemcard = (props) => {
   const [size, setsize] = useState("");
   const [flavour, setflavour] = useState("unflavoured");
   let data = useCart();
- 
+  
   
   let handleview = ()=>{
     console.log("viewed")
     navigate('/details')
   }
   let handleShop = async()=>{
+    
+    if((localStorage.getItem('email') === null || localStorage.getItem('email') === 'null' || localStorage.getItem('email') === 'undefined' || localStorage.getItem('token') === undefined)) 
+    {alert("Please log in first")
+  navigate('/signin')
+  }else{
     await dispatch({type:"ADD",id:props.items._id,CategoryName:props.items.CategoryName,img:props.items.img,
     name:props.items.name,price:finalPrice,qty:qty,size:size,img2:props.items.img2,flavour:flavour})
-    console.log(data)
+    console.log(data)}
   }
   let finalPrice = qty * parseInt(options[size]);
   useEffect(() => {

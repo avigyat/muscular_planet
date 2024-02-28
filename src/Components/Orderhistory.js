@@ -57,16 +57,17 @@ const Orderhistory = () => {
 
                                                     <div className='col-12 col-md-6 col-lg-3' >
                                                             <div className="card mt-3" >
-                                                                <img src={img} className="card-img-top" alt="..." style={{  height: "300px", objectFit: "fill" }} />
+                                                                <img src={img} className="card-img-top" alt="..." style={{  height: "250px", objectFit: "fill" }} />
                                                                 <div className="card-body">
-                                                                    <h5 className="card-title  bg-red-300 rounded">{arrayData.name}</h5>
-                                                                    <div className='container w-100 p-0' style={{ height: "38px" }}>
-                                                                        <span className='m-2 h-100 rounded bg-success'>QTY:{arrayData.qty}</span>
-                                                                        <span className='m-2 h-100 rounded bg-success'>Size:{arrayData.size}</span>
-                                                                        <span className='m-2 h-100 rounded bg-success'>{arrayData.flavour}</span>
+                                                                    <h5 className="card-title inline text-center px-2 bg-red-300 rounded">{arrayData.name}</h5>
+                                                                    <div className='container w-100 p-0' >
+                                                                        <span className='px-2 h-100 rounded bg-success'>QTY:{arrayData.qty}</span>
+                                                                        <span className='px-2 m-2 h-100 rounded bg-success'>Size:{arrayData.size}</span>
+                                                                        <span className='px-2 h-100 rounded bg-success'>{arrayData.flavour}</span>
                                                                         <hr/>
-                                                                        <span className='m-2 h-100 rounded bg-success'>Date:{arrayData.orderDate}</span>
-                                                                        <div className=' d-inline ms-2 h-100 w-20 fs-5 bg-red-300 rounded' >
+                                                                        <span className='px-2 h-100 rounded bg-success'>Date:{arrayData.orderDate}</span>
+                                                                        <hr/>
+                                                                        <div className='px-2 d-inline  h-100 w-20 fs-5 bg-red-300 rounded' >
                                                                             ₹{arrayData.price}/-
                                                                             
                                                                         </div>
