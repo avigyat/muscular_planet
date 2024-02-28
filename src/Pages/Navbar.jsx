@@ -24,7 +24,7 @@ const Navbar = () => {
 }
   const viewHistory = (e) => {
       e.preventDefault();
-      navigate('/signin')
+      navigate('/orderHistory')
   }
   return (
     

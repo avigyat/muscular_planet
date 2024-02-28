@@ -21,7 +21,8 @@ app.use((req,res,next)=>{
 
 app.use('/api', require('./routes/createUser'))
 app.use('/api/data', require('./routes/data'))
-
+app.use('/history', require('./routes/order_data'))
+app.use('/orderHistory', require('./routes/orderHistory'))
 app.get('/', function (req, res) {
     console.log("/user request called");
     res.send('Welcome to GeeksforGeeks');

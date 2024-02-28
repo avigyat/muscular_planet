@@ -11,6 +11,7 @@ import Supplement from "./Pages/Supplement";
 import Details from "./Components/Details";
 import { CartProvider } from "./Components/ContextReducer";
 import Cart from "./Components/Cart";
+import Orderhistory from "./Components/Orderhistory";
 function App() {
   return (
     <CartProvider>
@@ -24,6 +25,7 @@ function App() {
           <Route path="/viewCart"  element={<Cart />}/>
           <Route path='/' element={<Supplement />} />
           <Route path='/details' element={<Details />} />
+          <Route path="/orderHistory" exact element={<Orderhistory />}/>
         </Routes>
       </Router>
     </div>
