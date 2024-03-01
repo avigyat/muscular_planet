@@ -33,9 +33,7 @@ const Navbar = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-yellow-900">
                 <div className="container-fluid">
                     <Link className={`navbar-brand ${location.pathname === "/" ? "active" : ""}`} to="/">Muscular Planet</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                  
 
                     {(localStorage.getItem('email') === null || localStorage.getItem('email') === 'null' || localStorage.getItem('email') === 'undefined' || localStorage.getItem('token') === undefined)
                         ? <form className='d-flex topnav-right' >
@@ -44,7 +42,7 @@ const Navbar = () => {
                             <Link className='btn mx-2 btn-primary' to='/signUp'>Sign Up</Link>
                         </form>
                         : <form className='d-flex topnav-right' >
-                            <button className='btn mx-2 btn-primary' onClick={viewHistory}> Order history
+                            <button className='btn mx-2 btn-primary ' onClick={viewHistory}> Order history
                                
                             </button>
                             <button className='btn mx-2 btn-primary' onClick={viewCart}> Cart

@@ -1,6 +1,7 @@
-import React from 'react'
+import { React,useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart, useDispatchCart } from './ContextReducer';
+
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -8,12 +9,64 @@ const Cart = () => {
     let useremail = localStorage.getItem('email')
     let dispatch = useDispatchCart();
     console.log("data from reducers", orderdata.length)
-
+    const [key, setkey] = useState({})
+    const [order, seorder] = useState({})
 
     const host = "http://localhost:4000/";
     const handleCheckout =async(e)=>{
         e.preventDefault();//synthetic event
+
+        await fetch(`${host}api/getkey`, {
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+          }).then(async (res) => {
+            let response = await res.json()
+            setkey(response.key)
+            console.log(key)
+
+        })
         
+
+         await fetch(`${host}payments/checkout`, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+      
+            headers: {
+              "Content-Type": "application/json"
+      
+            }, body: JSON.stringify({ amount})
+          }).then(async (res) => {
+            let response = await res.json()
+            seorder(response.order)
+            console.log(order)
+
+        })
+
+          const options = {
+            key,
+            amount: order.amount,
+            currency: "INR",
+            name: "6 Pack Programmer",
+            description: "Tutorial of RazorPay",
+            image: "https://avatars.githubusercontent.com/u/25058652?v=4",
+            order_id: order.id,
+            callback_url: "http://localhost:4000/payments/paymentverification",
+            prefill: {
+                name: "Gaurav Kumar",
+                email: "gaurav.kumar@example.com",
+                contact: "9999999999"
+            },
+            notes: {
+                "address": "Razorpay Corporate Office"
+            },
+            theme: {
+                "color": "#121212"
+            }
+        };
+        const razor = new window.Razorpay(options);
+        razor.open();
+    
+
+
+
         const response = await fetch(`${host}history/orderData`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
       
@@ -76,6 +129,8 @@ const Cart = () => {
         )
     }
     let totalPrice = orderdata.reduce((total, food) => total + food.price, 0)
+    let shippingCharges = orderdata.length*120;
+    let amount = totalPrice+ shippingCharges
     return (
         <div>
             <div className="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
@@ -140,9 +195,9 @@ const Cart = () => {
                                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                         <div className="flex justify-between text-base font-medium text-gray-900">
                                             <p>Subtotal</p>
-                                            <p>{totalPrice}/-</p>
+                                            <p>{amount}/-</p>
                                         </div>
-                                        <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                                        <p className="mt-0.5 text-sm text-gray-500">Shipping charges ={shippingCharges}/- calculated at checkout.</p>
                                         <div className="mt-6">
                                             <button onClick={handleCheckout}
                                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</button>

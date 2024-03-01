@@ -125,7 +125,7 @@ const Signup = () => {
                 Already have an account?
                 <Link
                   className="no-underline border-b border-blue text-white"
-                  to="/login"
+                  to="/signin"
                 >
                   Log in
                 </Link>
